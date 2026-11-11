@@ -1,10 +1,8 @@
 # Recomendador de Livros com PROLOG
 
-Projeto acadêmico desenvolvido para a disciplina **Matemática Computacional Aplicada**, do curso de Análise e Desenvolvimento de Sistemas.
+Projeto acadêmico desenvolvido para a disciplina **Matemática Computacional Aplicada**, dos cursos de Análise e Desenvolvimento de Sistemas e Ciência da Computação.
 
 O objetivo é construir um sistema de recomendação de livros baseado nos gêneros literários de interesse dos usuários, utilizando programação lógica com **PROLOG** e o ambiente **SWI-Prolog**.
-
-> **Status:** planejamento e desenvolvimento inicial. As funcionalidades descritas neste README representam o escopo planejado e poderão ser ajustadas durante a implementação.
 
 ## Visão geral
 
@@ -93,8 +91,6 @@ O grupo planeja organizar as entregas previstas para o trabalho da seguinte form
 
 A apresentação está planejada para **02/12/2026**, conforme a data informada pelo grupo. Caso solicitado, o grupo também deverá estar preparado para apresentar o projeto na Expo Unifacs 2026.2.
 
-> Formatação, modelo e demais exigências específicas do resumo expandido e do relatório deverão seguir as orientações oficiais do professor.
-
 ## Planejamento e divisão de responsabilidades
 
 A divisão abaixo organiza as responsabilidades principais entre os seis integrantes. As atividades são complementares: todos devem compreender a lógica geral do sistema, revisar o trabalho em conjunto e participar da apresentação.
@@ -135,33 +131,6 @@ Antes da apresentação, o grupo deverá verificar se:
 - [ ] O grupo consegue explicar a diferença entre fatos, regras, consultas e inferências.
 - [ ] O projeto executa corretamente no SWI-Prolog.
 - [ ] O código e os documentos previstos estão disponíveis no repositório.
-
-## Organização do repositório
-
-Estrutura inicial sugerida:
-
-```text
-recomendador-livros-prolog/
-├── README.md
-├── src/
-│   └── sistema_recomendacao.pl
-├── docs/
-│   ├── resumo-expandido.pdf
-│   └── relatorio.pdf
-└── apresentacao/
-    └── slides.pdf
-```
-
-A estrutura poderá ser adaptada conforme os arquivos e as necessidades reais do projeto.
-
-## Equipe
-
-- Diego
-- Arthur
-- Pedro
-- Pablo
-- Thiago
-- Rafael
 
 ---
 

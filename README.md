@@ -132,6 +132,49 @@ Antes da apresentação, o grupo deverá verificar se:
 - [ ] O projeto executa corretamente no SWI-Prolog.
 - [ ] O código e os documentos previstos estão disponíveis no repositório.
 
+
+## Estrutura do repositório
+
+A organização abaixo separa o código-fonte, os testes e os documentos acadêmicos. Os arquivos `.gitkeep` apenas mantêm os diretórios vazios no Git e poderão ser removidos quando cada pasta receber seus arquivos definitivos.
+
+```text
+recomendador-livros-prolog/
+├── src/
+│   ├── base_conhecimento/   # Fatos: livros, autores, gêneros e usuários
+│   ├── regras/               # Regras de recomendação e inferência
+│   └── consultas/            # Consultas reutilizáveis para demonstrar o sistema
+├── tests/                    # Casos e roteiros de validação
+├── docs/                     # Documentação técnica e decisões do projeto
+├── entregas/
+│   ├── resumo_expandido/     # Versões e materiais do resumo expandido
+│   ├── relatorio/            # Relatório final e anexos
+│   └── apresentacao/         # Slides e materiais de apresentação
+└── README.md
+```
+
+### Convenções de organização
+
+- Mantenha os arquivos PROLOG (`.pl`) em `src/`, separados conforme sua responsabilidade.
+- Prefira nomes de arquivos e predicados em `snake_case`, sem espaços ou acentos.
+- Coloque cenários de teste e consultas de validação em `tests/`; consultas usadas pelo sistema ou na demonstração ficam em `src/consultas/`.
+- Salve documentos acadêmicos na subpasta correspondente dentro de `entregas/`. Evite manter cópias duplicadas sem identificação de versão.
+- Atualize este README quando a estrutura ou as instruções de execução mudarem.
+
+### Convenção de commits
+
+As mensagens de commit devem seguir o padrão `tipo: descrição`, usando um dos tipos:
+
+- `feat`: nova funcionalidade.
+- `fix`: correção de erro.
+- `docs`: documentação.
+- `style`: formatação sem alteração de lógica.
+- `refactor`: reorganização/refatoração sem novo recurso ou correção.
+- `perf`: melhoria de desempenho.
+- `test`: inclusão ou ajuste de testes.
+- `chore`: manutenção e tarefas de organização.
+
+Exemplo: `chore: cria estrutura inicial de pastas`.
+
 ---
 
 Projeto acadêmico de **Matemática Computacional Aplicada** — Análise e Desenvolvimento de Sistemas.

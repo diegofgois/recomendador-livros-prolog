@@ -133,11 +133,17 @@ Em termos de predicados:
 recomendar(Usuario, IdLivro) :-
     usuario(Usuario, _),
     livro(IdLivro, _),
-    gosta(Usuario, IdGenero),
-    genero_livro(IdLivro, IdGenero).
+    once((
+        gosta(Usuario, IdGenero),
+        genero_livro(IdLivro, IdGenero)
+    )).
+
+recomendar(Usuario, IdLivro, Titulo) :-
+    recomendar(Usuario, IdLivro),
+    livro(IdLivro, Titulo).
 ```
 
-Esse trecho descreve a lógica inicial para Pablo implementar. Se um livro corresponder a mais de uma preferência, a implementação deve evitar apresentar o mesmo livro repetido na demonstração. A forma de tratar isso deve ser validada nos testes.
+O uso de `once/1` faz com que cada livro seja retornado uma única vez, mesmo que corresponda a mais de uma preferência do usuário. O predicado de aridade 3 reaproveita a regra principal e consulta o título cadastrado. Esse é o comportamento esperado para Pablo implementar e Thiago validar nos testes.
 
 ## 6. Como carregar o projeto
 

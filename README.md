@@ -56,18 +56,30 @@ Os trechos abaixo ilustram a lógica planejada. São exemplos didáticos, não r
 **Fatos:**
 
 ```prolog
+usuario(joao, 'João').
+livro(harry_potter, 'Harry Potter').
+livro(o_hobbit, 'O Hobbit').
+livro(it_a_coisa, 'It: A Coisa').
+
 gosta(joao, fantasia).
-genero(harry_potter, fantasia).
-genero(o_hobbit, fantasia).
-genero(it_a_coisa, terror).
+genero(fantasia, 'Fantasia').
+genero(terror, 'Terror').
+
+genero_livro(harry_potter, fantasia).
+genero_livro(o_hobbit, fantasia).
+genero_livro(it_a_coisa, terror).
 ```
 
 **Regra de recomendação:**
 
 ```prolog
 recomendar(Usuario, Livro) :-
-    gosta(Usuario, Genero),
-    genero(Livro, Genero).
+    usuario(Usuario, _),
+    livro(Livro, _),
+    once((
+        gosta(Usuario, Genero),
+        genero_livro(Livro, Genero)
+    )).
 ```
 
 **Consulta:**

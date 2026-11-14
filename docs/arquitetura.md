@@ -104,7 +104,63 @@ gosta(ana, fantasia).
 gosta(bruno, romance).
 ```
 
-## 4. Como os arquivos se conectam
+## 4. Declaração dos módulos e conexão dos arquivos
+
+Cada arquivo de conhecimento deve começar declarando seu módulo e os predicados que disponibiliza. Usem estes cabeçalhos:
+
+`livros.pl`:
+
+```prolog
+:- module(base_conhecimento_livros, [livro/2]).
+```
+
+`autores.pl`:
+
+```prolog
+:- module(base_conhecimento_autores, [autor/2, escrito_por/2]).
+```
+
+`generos.pl`:
+
+```prolog
+:- module(base_conhecimento_generos, [genero/2, genero_livro/2]).
+```
+
+`usuarios.pl`:
+
+```prolog
+:- module(base_conhecimento_usuarios, [usuario/2, gosta/2]).
+```
+
+O módulo de regras importa apenas os fatos de que precisa:
+
+`regras/recomendacoes.pl`:
+
+```prolog
+:- module(regras_recomendacoes, [recomendar/2, recomendar/3]).
+
+:- use_module('../base_conhecimento/livros', [livro/2]).
+:- use_module('../base_conhecimento/generos', [genero_livro/2]).
+:- use_module('../base_conhecimento/usuarios', [usuario/2, gosta/2]).
+```
+
+O ponto de entrada disponibiliza os predicados de todos os módulos para que consultas e testes usem uma única importação:
+
+`src/recomendador.pl`:
+
+```prolog
+:- module(recomendador, []).
+
+:- reexport(base_conhecimento/livros).
+:- reexport(base_conhecimento/autores).
+:- reexport(base_conhecimento/generos).
+:- reexport(base_conhecimento/usuarios).
+:- reexport(regras/recomendacoes).
+```
+
+As diretivas `use_module/2` e `reexport/1` são do SWI-Prolog. Os caminhos relativos são resolvidos a partir do arquivo que contém a diretiva. Portanto, não substituam esses caminhos por caminhos absolutos do computador de alguém.
+
+## 5. Como os arquivos se conectam
 
 - `recomendacoes.pl` importa os módulos de livros, gêneros e usuários, pois precisa consultar esses fatos para inferir recomendações.
 - `recomendador.pl` reexporta os módulos da base e o módulo de regras. Assim, consultas e testes usam um único ponto de entrada.
@@ -123,7 +179,7 @@ consultas/exemplos.pl ──────────────────┤
 tests/recomendacoes_tests.pl ───────────┘
 ```
 
-## 5. Regra de recomendação acordada
+## 6. Regra de recomendação acordada
 
 A regra deve recomendar um livro quando o usuário existir, o livro estiver cadastrado e houver pelo menos um gênero do livro que corresponda a uma preferência do usuário.
 
@@ -145,7 +201,7 @@ recomendar(Usuario, IdLivro, Titulo) :-
 
 O uso de `once/1` faz com que cada livro seja retornado uma única vez, mesmo que corresponda a mais de uma preferência do usuário. O predicado de aridade 3 reaproveita a regra principal e consulta o título cadastrado. Esse é o comportamento esperado para Pablo implementar e Thiago validar nos testes.
 
-## 6. Como carregar o projeto
+## 7. Como carregar o projeto
 
 A partir da pasta raiz do repositório, abra o SWI-Prolog e carregue o ponto de entrada:
 
@@ -162,7 +218,7 @@ Depois, faça uma consulta:
 
 O primeiro argumento é o identificador do usuário. As variáveis começam com letra maiúscula.
 
-## 7. Regras de colaboração
+## 8. Regras de colaboração
 
 1. Não renomeie predicados nem altere sua aridade sem alinhar com o grupo.
 2. Não crie um segundo predicado para representar a mesma relação.

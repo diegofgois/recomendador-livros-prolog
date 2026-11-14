@@ -152,6 +152,23 @@ recomendador-livros-prolog/
 └── README.md
 ```
 
+### Contrato técnico dos módulos
+
+A arquitetura detalhada, os predicados compartilhados e os exemplos de fatos estão documentados em:
+
+- [Arquitetura e contrato entre módulos](docs/arquitetura.md).
+- [Modelo de dados da base de conhecimento](docs/modelo_dados.md).
+
+**Padrões acordados para a implementação:**
+
+- `livro(IdLivro, Titulo)`
+- `autor(IdAutor, Nome)` e `escrito_por(IdLivro, IdAutor)`
+- `genero(IdGenero, Nome)` e `genero_livro(IdLivro, IdGenero)`
+- `usuario(IdUsuario, Nome)` e `gosta(IdUsuario, IdGenero)`
+- `recomendar(IdUsuario, IdLivro)` e `recomendar(IdUsuario, IdLivro, Titulo)`
+
+Os identificadores serão átomos em `snake_case`, sem acentos; nomes e títulos serão strings. Não alterem nomes ou aridades desses predicados sem alinhar com o grupo.
+
 ### Convenções de organização
 
 - Mantenha os arquivos PROLOG (`.pl`) em `src/`, separados conforme sua responsabilidade.

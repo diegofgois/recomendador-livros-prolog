@@ -64,6 +64,8 @@ Ambiente: GitHub Actions, SWI-Prolog 9.2.9, Linux. Branch de validação isolada
 - [Validação da base real](https://github.com/diegofgois/recomendador-livros-prolog/actions/runs/46062607239): `All 12 tests passed`; 3 casos condicionais ausentes; os perfis consultados retornaram `[]` para os três grupos.
 - [Validação com cenários sintéticos](https://github.com/diegofgois/recomendador-livros-prolog/actions/runs/46062639164): base real com 12 testes aprovados e, em seguida, base temporária com 15 testes aprovados. Um usuário com uma preferência (romance) recebeu 5 livros, e os dois usuários sem correspondências receberam listas vazias. Os dados sintéticos foram adicionados apenas ao workspace descartável do runner, nunca à main ou à PR #16. Um aviso de variável singleton no teste foi corrigido nas branches de entrega e validação.
 
+- [Revalidação após ajuste do teste](https://github.com/diegofgois/recomendador-livros-prolog/actions/runs/46062669448) — commit de validação `7e89799ee02e98257e7fee56508d3745bbfe3967`: sucesso; 12 testes passaram na base real (3 não aplicáveis) e 15 passaram na base temporária com cenários sintéticos. Sem o aviso singleton do Prolog; permaneceu somente o aviso de depreciação do `actions/checkout@v4` no runner. A suíte tem o mesmo blob `c87062f3928ed975a371c69326939cbf86abd8ac` na branch da PR.
+
 ## Pendências para conclusão
 
 - Diego: entregar `src/recomendador.pl` na issue #11; repetir a suíte com o ponto de entrada oficial, sem gerar um substituto no runner.

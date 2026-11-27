@@ -1,0 +1,36 @@
+name: Validacao provisoria issue 10
+on:
+  push:
+    branches: [test/issue-10-validacao-online]
+permissions:
+  contents: read
+jobs:
+  plunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar SWI-Prolog
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y swi-prolog-nox
+          swipl --version
+      - name: Ponto de entrada provisório somente no runner
+        run: |
+          if [ ! -f src/recomendador.pl ]; then
+            echo "ATENCAO: usando ponto de entrada provisório da arquitetura; nao e a entrega da issue 11."
+            cat > src/recomendador.pl <<'PROLOG'
+          :- module(recomendador, []).
+          :- reexport(base_conhecimento/livros).
+          :- reexport(base_conhecimento/autores).
+          :- reexport(base_conhecimento/generos).
+          :- reexport(base_conhecimento/usuarios).
+          :- reexport(regras/recomendacoes).
+          PROLOG
+          fi
+      - name: Consultas reais e perfis disponíveis
+        run: |
+          swipl -q -s src/consultas/exemplos.pl -g "forall(usuario(U,_),(findall(I,recomendar(U,I),L),length(L,N),format('~w: ~w~n',[U,N]))),halt"
+          swipl -q -s src/consultas/exemplos.pl -g "findall(T,recomendar(mariana,harry_potter_pedra_filosofal,T),Ts),writeln(Ts),halt"
+          swipl -q -s src/consultas/exemplos.pl -g "findall(U,(usuario(U,_),findall(G,gosta(U,G),Gs),sort(Gs,[_])),Unica),findall(U,(usuario(U,_),\\+gosta(U,_)),Sem),findall(U,(usuario(U,_),once(gosta(U,_)),\\+(gosta(U,G),genero_livro(L,G),livro(L,_))),SemLivro),format('Perfis unica: ~w; sem preferencia: ~w; sem livro: ~w~n',[Unica,Sem,SemLivro]),halt"
+      - name: Executar PlUnit
+        run: swipl -s tests/recomendacoes_tests.pl -g run_tests -t halt

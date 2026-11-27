@@ -107,7 +107,7 @@ usuario_sem_livro_compativel(U) :-
     \+ (gosta(U, G), genero_livro(L, G), livro(L, _)).
 
 test(preferencia_unica_com_livros,
-     [condition(once((usuario_preferencia_unica(U, G),
+     [condition(once((usuario_preferencia_unica(_, G),
                        genero_livro(L, G), livro(L, _))))]) :-
     forall(usuario_preferencia_unica(Usuario, Genero),
         ( findall(Id, (genero_livro(Id, Genero), livro(Id, _)), Brutos),

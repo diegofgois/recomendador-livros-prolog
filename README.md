@@ -101,7 +101,7 @@ O grupo planeja organizar as entregas previstas para o trabalho da seguinte form
 - **Relatório em PDF:** identificação dos integrantes e respectivos RAs, descrição das atividades realizadas por cada membro e endereço do repositório.
 - **Apresentação:** exposição do problema, da solução proposta, da modelagem lógica e da demonstração prática.
 
-A apresentação está planejada para **02/12/2026**, conforme a data informada pelo grupo. Caso solicitado, o grupo também deverá estar preparado para apresentar o projeto na Expo Unifacs 2026.2.
+A apresentação está planejada para **30/11/2026**, conforme a data informada pelo grupo. Caso solicitado, o grupo também deverá estar preparado para apresentar o projeto na Expo Unifacs 2026.2.
 
 ## Planejamento e divisão de responsabilidades
 
@@ -128,7 +128,7 @@ A divisão abaixo organiza as responsabilidades principais entre os seis integra
 | 6. Documentação | Finalizar README, resumo expandido e relatório em PDF. | Rafael, com informações fornecidas por todos |
 | 7. Preparação da apresentação | Organizar a explicação do problema, dos conceitos de PROLOG e da demonstração prática. | Todos |
 
-**Marco final:** apresentação e demonstração do projeto em 02/12/2026.
+**Marco final:** apresentação e demonstração do projeto em 30/11/2026.
 
 As datas intermediárias deverão ser combinadas pelo grupo e registradas conforme a evolução do trabalho.
 

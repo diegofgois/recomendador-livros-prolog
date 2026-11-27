@@ -31,6 +31,6 @@ jobs:
         run: |
           swipl -q -s src/consultas/exemplos.pl -g "forall(usuario(U,_),(findall(I,recomendar(U,I),L),length(L,N),format('~w: ~w~n',[U,N]))),halt"
           swipl -q -s src/consultas/exemplos.pl -g "findall(T,recomendar(mariana,harry_potter_pedra_filosofal,T),Ts),writeln(Ts),halt"
-          swipl -q -s src/consultas/exemplos.pl -g "findall(U,(usuario(U,_),findall(G,gosta(U,G),Gs),sort(Gs,[_])),Unica),findall(U,(usuario(U,_),\\+gosta(U,_)),Sem),findall(U,(usuario(U,_),once(gosta(U,_)),\\+(gosta(U,G),genero_livro(L,G),livro(L,_))),SemLivro),format('Perfis unica: ~w; sem preferencia: ~w; sem livro: ~w~n',[Unica,Sem,SemLivro]),halt"
+          swipl -q -s src/consultas/exemplos.pl -g "findall(U,(usuario(U,_),findall(G,gosta(U,G),Gs),sort(Gs,[_])),Unica),findall(U,(usuario(U,_),\\+ gosta(U,_)),Sem),findall(U,(usuario(U,_),once(gosta(U,_)),\\+ (gosta(U,G),genero_livro(L,G),livro(L,_))),SemLivro),format('Perfis unica: ~w; sem preferencia: ~w; sem livro: ~w~n',[Unica,Sem,SemLivro]),halt"
       - name: Executar PlUnit
         run: swipl -s tests/recomendacoes_tests.pl -g run_tests -t halt

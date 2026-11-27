@@ -34,3 +34,21 @@ jobs:
           swipl -q -s src/consultas/exemplos.pl -g "findall(U,(usuario(U,_),findall(G,gosta(U,G),Gs),sort(Gs,[_])),Unica),findall(U,(usuario(U,_),\\+ gosta(U,_)),Sem),findall(U,(usuario(U,_),once(gosta(U,_)),\\+ (gosta(U,G),genero_livro(L,G),livro(L,_))),SemLivro),format('Perfis unica: ~w; sem preferencia: ~w; sem livro: ~w~n',[Unica,Sem,SemLivro]),halt"
       - name: Executar PlUnit
         run: swipl -s tests/recomendacoes_tests.pl -g run_tests -t halt
+      - name: Perfis sinteticos isolados para os tres cenarios ausentes
+        run: |
+          # Apenas na copia descartavel do runner. Nao altera a base versionada.
+          cat >> src/base_conhecimento/usuarios.pl <<'PROLOG'
+          :- discontiguous usuario/2.
+          :- discontiguous gosta/2.
+          usuario(qa_uma_preferencia_teste, 'QA uma preferencia').
+          usuario(qa_sem_preferencia_teste, 'QA sem preferencia').
+          usuario(qa_sem_livros_teste, 'QA sem livros').
+          gosta(qa_uma_preferencia_teste, romance).
+          gosta(qa_sem_livros_teste, qa_genero_sem_livros_teste).
+          PROLOG
+          cat >> src/base_conhecimento/generos.pl <<'PROLOG'
+          :- discontiguous genero/2.
+          genero(qa_genero_sem_livros_teste, 'QA genero sem livros').
+          PROLOG
+          swipl -q -s src/consultas/exemplos.pl -g "findall(I,recomendar(qa_uma_preferencia_teste,I),L),length(L,5),writeln(L),findall(I,recomendar(qa_sem_preferencia_teste,I),[]),findall(I,recomendar(qa_sem_livros_teste,I),[]),halt"
+          swipl -s tests/recomendacoes_tests.pl -g run_tests -t halt

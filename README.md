@@ -144,6 +144,33 @@ Antes da apresentação, o grupo deverá verificar se:
 - [ ] O projeto executa corretamente no SWI-Prolog.
 - [ ] O código e os documentos previstos estão disponíveis no repositório.
 
+## Como executar
+
+Requisito: [SWI-Prolog](https://www.swi-prolog.org/) instalado e disponível no terminal (`swipl --version`).
+
+A partir da **raiz do repositório**, abra o SWI-Prolog e carregue o ponto de entrada:
+
+```prolog
+?- use_module('src/recomendador').
+```
+
+Consultas de exemplo:
+
+```prolog
+?- recomendar(ana, IdLivro, Titulo).
+?- findall(Id, recomendar(joao, Id), Livros), length(Livros, Total).
+?- recomendar(ana, o_hobbit).
+```
+
+Mais consultas comentadas estão em `src/consultas/exemplos.pl`.
+
+### Executar os testes
+
+```bash
+swipl -s tests/recomendacoes_tests.pl -g run_tests -t halt
+```
+
+Resultado esperado: `All 12 tests passed`. Três testes condicionais não são executados na base atual porque ela não tem os perfis de borda correspondentes (detalhes em `docs/testes.md`).
 
 ## Estrutura do repositório
 
